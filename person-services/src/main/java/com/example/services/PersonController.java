@@ -26,8 +26,7 @@ public class PersonController {
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Get person", notes = "Get a single person based on its unique id", nickname = "getPerson")
-
-    public Person findById(@PathVariable Long id){
+    public Person findById(@PathVariable long id){
         return repository.findById(id).orElse(null);
     }
 
