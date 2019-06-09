@@ -54,7 +54,7 @@ mvn spring-boot:run
 Now that the server is running, visit http://localhost:8761 to see the list of exposed applications registered with Eureka
 
 ## Person business services
-A set of services to provide consume Person services from Eureka Server with Feign 
+A set of services to consume Person services from Eureka Server with Feign 
 
 Run person-business-services 
 ```
