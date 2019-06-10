@@ -25,7 +25,9 @@ public class PersonServicesApplication {
 				.apis(RequestHandlerSelectors.basePackage("com.example.services"))
 				.paths(any())
 				.build()
-				.apiInfo(new ApiInfo("Person Services","A set of services to provide data access to person", "0.0.1", null,new Contact("Diogo S.", "http://github.com/diogo-santos", null),null, null));
+				.apiInfo(new ApiInfo("Person Services",
+						"A set of services to provide data access to person", "0.0.1", null,
+						new Contact("Diogo S.", "http://github.com/diogo-santos", null),null, null));
 	}
 
 	public static void main(String[] args) {

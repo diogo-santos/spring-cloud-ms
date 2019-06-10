@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.example.service.discovery</groupId>
 	<artifactId>eureka-server</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<name>eureka-server</name>
 	<description>Service discovery for Microservices</description>
 

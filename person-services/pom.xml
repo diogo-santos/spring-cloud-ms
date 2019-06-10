@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.example.services.person</groupId>
 	<artifactId>person-services</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<name>person-services</name>
 	<description>Data services for Person domain</description>
 
@@ -73,12 +73,11 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
-            <version>RELEASE</version>
         </dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-eureka</artifactId>
-			<version>RELEASE</version>
+			<version>1.4.7.RELEASE</version>
 		</dependency>
 	</dependencies>
 
