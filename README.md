@@ -64,5 +64,5 @@ mvn spring-boot:run
 ## Test Person business  services
 Now that the API is running, visit http://localhost:8002 to see the API documentation using Swagger2 with the list of exposed endpoints
 
-#Microservices Overview
+## Microservices Overview
 ![Microservices Overiew](https://github.com/diogo-santos/spring-cloud-ms/blob/master/service-design.png)
