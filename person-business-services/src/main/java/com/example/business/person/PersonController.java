@@ -1,6 +1,5 @@
 package com.example.business.person;
 
-import com.example.business.person.client.PersonService;
 import com.example.business.person.domain.Person;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -16,17 +15,17 @@ import java.util.List;
 @Api(value="PersonBusiness", tags=("personBusiness"))
 public class PersonController {
     @Autowired
-    private PersonService personService;
+    private PersonBusinessProcess businessProcess;
 
     @RequestMapping(value = "/person", method = RequestMethod.GET)
     @ApiOperation(value="Get all People", notes="Gets all people in the system", nickname="getPeople")
     public List<Person> getAllPeople() {
-        return personService.findAll();
+        return businessProcess.getPeopleWithContactList();
     }
 
     @RequestMapping(value = "/person/{id}", method = RequestMethod.GET)
     @ApiOperation(value = "Get person", notes = "Get a single person based on its unique id", nickname = "getPerson")
-    public Person getPerson(@PathVariable("id") long id) {
-        return personService.findById(id);
+    public Person getPerson(@PathVariable long id) {
+        return businessProcess.getPersonWithContactList(id);
     }
 }

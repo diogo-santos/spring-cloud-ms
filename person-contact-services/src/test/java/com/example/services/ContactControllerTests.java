@@ -28,7 +28,7 @@ public class ContactControllerTests {
 	public void givenEntityToSaveWhenPerformPostThenEntityIsCreated() throws Exception {
 		mockMvc.perform(post("/contact")
 						.contentType(APPLICATION_JSON_UTF8)
-						.content("{\"idPerson\": \"1\", \"contact\":\"test\"}"))
+						.content("{\"idPerson\": \"1\", \"info\":\"test\"}"))
 				.andExpect(status().isCreated());
 	}
 
@@ -39,6 +39,7 @@ public class ContactControllerTests {
 
 		mockMvc.perform(get("/contact/{idPerson}", 2L))
 				.andExpect(status().isOk())
+				.andExpect(jsonPath("$.[?(@.idPerson == '%s')]", "2").exists())
 				.andExpect(jsonPath("$.[?(@.info == '%s')]", "email@example.com").exists());
 	}
 }
