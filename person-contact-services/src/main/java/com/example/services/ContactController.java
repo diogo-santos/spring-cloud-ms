@@ -33,8 +33,8 @@ public class ContactController {
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    @ApiOperation(value = "Create contact", notes = "Create a single contact in the system", nickname = "createContact")
-    public Contact create(@RequestBody @Validated Contact contact) {
-        return repository.save(contact);
+    @ApiOperation(value = "Create contact", notes = "Create contacts in the system", nickname = "createContact")
+    public List<Contact> create(@RequestBody @Validated List<Contact> contacts) {
+        return repository.saveAll(contacts);
     }
 }

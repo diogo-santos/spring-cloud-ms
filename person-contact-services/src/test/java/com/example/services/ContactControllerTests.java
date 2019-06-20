@@ -27,8 +27,8 @@ public class ContactControllerTests {
 	@Test
 	public void givenEntityToSaveWhenPerformPostThenEntityIsCreated() throws Exception {
 		mockMvc.perform(post("/contact")
-						.contentType(APPLICATION_JSON_UTF8)
-						.content("{\"idPerson\": \"1\", \"info\":\"test\"}"))
+				.contentType(APPLICATION_JSON_UTF8)
+				.content("[{\"idPerson\": \"1\", \"info\":\"test\"}]"))
 				.andExpect(status().isCreated());
 	}
 
