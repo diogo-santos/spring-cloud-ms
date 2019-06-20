@@ -12,7 +12,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import static java.util.stream.Collectors.*;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.mapping;
+import static java.util.stream.Collectors.toList;
+
 
 @Service
 public class PersonBusinessProcess {
@@ -29,17 +32,27 @@ public class PersonBusinessProcess {
     public List<Person> getPeopleWithContactList() {
         List<Person> people = this.personService.findAll();
         List<Contact> contacts = this.contactService.findAll();
-        Map<Long, List<String>> contactMap = contacts.stream().collect(groupingBy(Contact::getIdPerson, mapping(Contact::getInfo, toList())));
+        Map<Long, List<Contact>> contactMap = contacts.stream().collect(groupingBy(Contact::getIdPerson, mapping(contact->contact, toList())));
         people.forEach(person -> person.setContacts(contactMap.getOrDefault(person.getId(), Collections.emptyList())));
 
         return people;
     }
 
     public Person getPersonWithContactList(long id) {
-        List<Contact> contacts = this.contactService.findByIdPerson(id);
         Person person = this.personService.findById(id);
-        person.setContacts(contacts.stream().map(Contact::getInfo).collect(toList()));
+        if (person!=null) {
+            List<Contact> contacts = this.contactService.findByIdPerson(id);
+            person.setContacts(contacts);
+        }
 
         return person;
+    }
+
+    public Person createPersonWithContactList(Person person) {
+        final Person personSaved = this.personService.create(person);
+        person.getContacts().forEach(c->c.setIdPerson(personSaved.getId()));
+        final List<Contact> contacts = this.contactService.create(person.getContacts());
+        personSaved.setContacts(contacts);
+        return personSaved;
     }
 }

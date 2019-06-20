@@ -13,5 +13,5 @@ public class Person {
     private Long id;
     private String firstName;
     private String lastName;
-    private List<String> contacts;
+    private List<Contact> contacts;
 }

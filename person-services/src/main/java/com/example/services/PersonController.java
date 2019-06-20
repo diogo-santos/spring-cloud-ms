@@ -20,7 +20,7 @@ public class PersonController {
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Get all people", notes = "Get all people in the system", nickname = "getPeople")
     public List<Person> findAll() {
-        return (List<Person>) repository.findAll();
+        return repository.findAll();
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)
