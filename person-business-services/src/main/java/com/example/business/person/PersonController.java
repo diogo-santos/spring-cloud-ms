@@ -24,19 +24,19 @@ public class PersonController {
     }
 
     @RequestMapping(value = "/person", method = RequestMethod.GET)
-    @ApiOperation(value="Get all People", notes="Gets all people in the system", nickname="getPeople")
+    @ApiOperation(value="Get all People", notes="Gets all people with contact list in the system", nickname="getPeople")
     public List<Person> getPeople() {
         return businessProcess.getPeopleWithContactList();
     }
 
     @RequestMapping(value = "/person/{id}", method = RequestMethod.GET)
-    @ApiOperation(value = "Get person", notes = "Get a single person based on its unique id", nickname = "getPerson")
+    @ApiOperation(value = "Get person", notes = "Get a single person with contact list based on its unique id", nickname = "getPerson")
     public Person getPerson(@PathVariable long id) {
         return businessProcess.getPersonWithContactList(id);
     }
 
     @RequestMapping(value = "/person", method = RequestMethod.POST)
-    @ApiOperation(value = "Create person", notes = "Create person with contact info", nickname = "createPerson")
+    @ApiOperation(value = "Create person", notes = "Create person with contact list", nickname = "createPerson")
     public Person createPerson(@RequestBody Person person) {
         return businessProcess.createPersonWithContactList(person);
     }

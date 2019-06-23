@@ -7,7 +7,6 @@ import com.example.business.person.domain.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +18,6 @@ import static java.util.stream.Collectors.toList;
 
 @Service
 public class PersonBusinessProcess {
-
     private PersonService personService;
     private ContactService contactService;
 
@@ -50,9 +48,10 @@ public class PersonBusinessProcess {
 
     public Person createPersonWithContactList(Person person) {
         final Person personSaved = this.personService.create(person);
-        person.getContacts().forEach(c->c.setIdPerson(personSaved.getId()));
-        final List<Contact> contacts = this.contactService.create(person.getContacts());
-        personSaved.setContacts(contacts);
+        if (null!=person.getContacts() && !person.getContacts().isEmpty()) {
+            person.getContacts().forEach(c->c.setIdPerson(personSaved.getId()));
+            personSaved.setContacts(this.contactService.create(person.getContacts()));
+        }
         return personSaved;
     }
 }
