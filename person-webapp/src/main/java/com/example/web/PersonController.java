@@ -4,6 +4,7 @@ import com.example.web.client.PersonService;
 import com.example.web.domain.Person;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,6 +35,7 @@ public class PersonController {
     @PostMapping("/person")
     public String createPerson(Model model, @Valid Person person, BindingResult result) {
         if (!result.hasErrors()) {
+            person.getContacts().removeIf(c->StringUtils.isEmpty(c.getInfo()));
             personService.create(person);
             return "redirect:/"+PERSON_PAGE;
         }
