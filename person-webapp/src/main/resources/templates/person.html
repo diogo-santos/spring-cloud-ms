@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <title>Person Web</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="person">Person Web</a>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="pb-2 mt-2 mb-2 border-bottom">
+        Welcome to the Person Page
+    </div>
+<br>
+    <form action="#" th:action="@{/person}" th:object="${person}" method="post">
+        <div class="row">
+            <div class="col-md-5 mb-3">
+                <input type="text" class="form-control" id="firstName" placeholder="First name" value="" required
+                       th:field="*{firstName}" th:classappend="${#fields.hasErrors('firstName')}?'is-invalid'">
+                <div class="invalid-feedback">
+                    Valid first name is required
+                </div>
+            </div>
+            <div class="col-md-5 mb-3">
+                <input type="text" class="form-control" id="lastName" placeholder="Last name" value="" required
+                       th:field="*{lastName}" th:classappend="${#fields.hasErrors('lastName')}?'is-invalid'">
+                <div class="invalid-feedback">
+                    Valid last name is required
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-5 mb-3">
+                <input class="btn btn-dark" type="submit" value="Add Person">
+            </div>
+        </div>
+    </form>
+
+    <table class="table table-responsive-md">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</td>
+            <th scope="col">Contacts</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${!#lists.isEmpty(personList)}" th:each="person: ${personList}">
+            <th scope="row" th:text="${person.id}">#</th>
+            <td th:text="${person.firstName}">...</td>
+            <td th:text="${person.lastName}">...</td>
+            <td>
+               <th:block th:if="${null!=person.contacts}" th:each="contact, iteratorStatus : ${person.contacts}">
+                    <span th:text="${#strings.concat(contact.info, !iteratorStatus.last?', ':'')}">...</span>
+               </th:block>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div th:if="${#lists.isEmpty(personList)}">
+        <td colspan="4">No Person has been created</td>
+    </div>
+</div>
+
+</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
