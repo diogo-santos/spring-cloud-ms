@@ -39,4 +39,12 @@ public class PersonBusinessServicesApplicationTests {
 						.content("{\"firstName\": \"GivenName\", \"lastName\":\"LastName\", \"contacts\":[{\"info\":\"email@example.com\"}]}"))
 				.andExpect(status().isOk());
 	}
+
+	@Test
+	public void givenPersonWithoutContactsWhenPerformPostThenPersonIsCreated() throws Exception {
+		mockMvc.perform(post("/person")
+				.contentType(APPLICATION_JSON_UTF8)
+				.content("{\"firstName\": \"GivenName\", \"lastName\":\"LastName\"}"))
+				.andExpect(status().isOk());
+	}
 }
