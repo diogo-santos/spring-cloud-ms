@@ -20,7 +20,7 @@ public class PersonController {
         this.personService = personService;
     }
 
-    @GetMapping("/person")
+    @GetMapping({"/","/person"})
     public String getPeople(Model model, @RequestParam(required = false) Long id) {
         Person findPerson;
         if (null!=id && null!=(findPerson = personService.findById(id))) {

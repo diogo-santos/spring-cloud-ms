@@ -6,6 +6,7 @@ Spring Cloud Microservices using external configurations, discover and consume s
 - Swagger2 - Documentation from the API [Swagger.io](https://swagger.io)
 - Eureka - REST based Service Discovery [Eureka Netflix](https://github.com/Netflix/eureka/wiki/Eureka-at-a-glance)
 - Feign - Declarative REST Client [Spring Cloud OpenFeign](https://cloud.spring.io/spring-cloud-openfeign/single/spring-cloud-openfeign.html)
+- Hystrix - Circuit Break pattern
 
 ## What you'll need
 
@@ -52,6 +53,18 @@ mvn spring-boot:run
 ## Test Person services
 Now that the API is running, visit http://localhost:8001 to see the API documentation using Swagger2 with the list of exposed endpoints
 
+## Person contact services
+A set of services to provide data access to Contact info
+
+Run person-contact-services API
+```
+cd person-contact-services
+mvn spring-boot:run
+```
+
+## Test Person contact services
+Now that the API is running, visit http://localhost:8003 to see the API documentation using Swagger2 with the list of exposed endpoints
+
 ## Person business services
 A set of services to consume Person services from Eureka Server with Feign 
 
@@ -61,8 +74,23 @@ cd person-business-services
 mvn spring-boot:run
 ```
 
-## Test Person business  services
+## Test Person business services
 Now that the API is running, visit http://localhost:8002 to see the API documentation using Swagger2 with the list of exposed endpoints
+
+###Hystrix Dashboard
+Visit http://localhost:8002/hystrix, type in the text box: http://localhost:8002/actuator/hystrix.stream and click on "Monitor Stream"
+
+##Person web app
+Web app using Thymeleaf and Bootstrap for creating and searching Person entities in the system
+
+Run person-webapp 
+```
+cd person-webapp
+mvn spring-boot:run
+```
+
+##Test Person web app
+Now that the Web app is running, visit http://localhost:8004/person to see the landing web page
 
 ## Microservices Overview
 ![Microservices Overiew](https://github.com/diogo-santos/spring-cloud-ms/blob/master/service-design.png)
