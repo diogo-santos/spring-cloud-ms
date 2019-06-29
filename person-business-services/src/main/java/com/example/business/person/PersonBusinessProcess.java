@@ -12,9 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 import static java.util.stream.Collectors.groupingBy;
-import static java.util.stream.Collectors.mapping;
-import static java.util.stream.Collectors.toList;
-
+import static org.springframework.util.CollectionUtils.isEmpty;
 
 @Service
 public class PersonBusinessProcess {
@@ -30,9 +28,10 @@ public class PersonBusinessProcess {
     public List<Person> getPeopleWithContactList() {
         List<Person> people = this.personService.findAll();
         List<Contact> contacts = this.contactService.findAll();
-        Map<Long, List<Contact>> contactMap = contacts.stream().collect(groupingBy(Contact::getIdPerson));
-        people.forEach(person -> person.setContacts(contactMap.getOrDefault(person.getId(), Collections.emptyList())));
-
+        if (!isEmpty(contacts)) {
+            Map<Long, List<Contact>> contactMap = contacts.stream().collect(groupingBy(Contact::getIdPerson));
+            people.forEach(person -> person.setContacts(contactMap.getOrDefault(person.getId(), Collections.emptyList())));
+        }
         return people;
     }
 
