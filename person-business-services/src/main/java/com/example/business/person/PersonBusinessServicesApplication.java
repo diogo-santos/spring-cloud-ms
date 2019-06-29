@@ -2,6 +2,7 @@ package com.example.business.person;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
@@ -18,6 +19,7 @@ import static springfox.documentation.builders.PathSelectors.any;
 @EnableSwagger2
 @EnableDiscoveryClient
 @EnableFeignClients
+@EnableCircuitBreaker
 public class PersonBusinessServicesApplication {
 	@Bean
 	public Docket api(){

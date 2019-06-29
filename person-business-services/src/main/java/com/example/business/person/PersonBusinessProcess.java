@@ -30,7 +30,7 @@ public class PersonBusinessProcess {
     public List<Person> getPeopleWithContactList() {
         List<Person> people = this.personService.findAll();
         List<Contact> contacts = this.contactService.findAll();
-        Map<Long, List<Contact>> contactMap = contacts.stream().collect(groupingBy(Contact::getIdPerson, mapping(contact->contact, toList())));
+        Map<Long, List<Contact>> contactMap = contacts.stream().collect(groupingBy(Contact::getIdPerson));
         people.forEach(person -> person.setContacts(contactMap.getOrDefault(person.getId(), Collections.emptyList())));
 
         return people;
@@ -42,7 +42,6 @@ public class PersonBusinessProcess {
             List<Contact> contacts = this.contactService.findByIdPerson(id);
             person.setContacts(contacts);
         }
-
         return person;
     }
 

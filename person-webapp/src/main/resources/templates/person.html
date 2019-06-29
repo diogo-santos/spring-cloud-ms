@@ -21,7 +21,7 @@
     <div class="pb-2 mt-2 mb-2 border-bottom">
         Welcome to the Person Page
     </div>
-    <form action="#" th:action="@{/person}" th:object="${person}" method="post">
+    <form th:if="${person!=null}" action="#" th:action="@{/person}" th:object="${person}" method="post">
         <div class="row">
             <div class="col-md-5 mb-3">
                 <input type="text" class="form-control" id="firstName" placeholder="First name" value="" required
@@ -82,7 +82,7 @@
         </thead>
         <tbody>
         <tr th:if="${!#lists.isEmpty(personList)}" th:each="person: ${personList}">
-            <th scope="row" th:text="${person.id}">#</th>
+            <th scope="row"><a th:href="@{/person(id=${person.id})}"><span th:text="${person.id}">...</span></a></th>
             <td th:text="${person.firstName}">...</td>
             <td th:text="${person.lastName}">...</td>
             <td>
