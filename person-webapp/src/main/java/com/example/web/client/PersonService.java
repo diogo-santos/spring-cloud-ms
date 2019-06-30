@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
-@FeignClient(value="PERSONBUSINESSSERVICES")
+@FeignClient(value="PERSONBUSINESSSERVICES", fallback = PersonServiceFallbackImpl.class)
 public interface PersonService {
     @RequestMapping(value="/person", method= RequestMethod.GET)
     List<Person> findAll();
