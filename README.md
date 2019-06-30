@@ -77,10 +77,10 @@ mvn spring-boot:run
 ## Test Person business services
 Now that the API is running, visit http://localhost:8002 to see the API documentation using Swagger2 with the list of exposed endpoints
 
-###Hystrix Dashboard
+### Hystrix Dashboard
 Visit http://localhost:8002/hystrix, type in the text box: http://localhost:8002/actuator/hystrix.stream and click on "Monitor Stream"
 
-##Person web app
+## Person web app
 Web app using Thymeleaf and Bootstrap for creating and searching Person entities in the system
 
 Run person-webapp 
@@ -89,7 +89,7 @@ cd person-webapp
 mvn spring-boot:run
 ```
 
-##Test Person web app
+## Test Person web app
 Now that the Web app is running, visit http://localhost:8004/person to see the landing web page
 
 ## Microservices Overview
