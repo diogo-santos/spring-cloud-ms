@@ -1,4 +1,6 @@
-# Spring Cloud Microservice 
+# Spring Cloud Microservice
+![Microservices Overiew](https://github.com/diogo-santos/spring-cloud-ms/blob/master/service-design.png)
+
 ## What was build
 Spring Cloud Microservices using external configurations, discover and consume services, and isolate from failure with the circuit breaker pattern
 
@@ -91,6 +93,3 @@ mvn spring-boot:run
 
 ## Test Person web app
 Now that the Web app is running, visit http://localhost:8004/person to see the landing web page
-
-## Microservices Overview
-![Microservices Overiew](https://github.com/diogo-santos/spring-cloud-ms/blob/master/service-design.png)
