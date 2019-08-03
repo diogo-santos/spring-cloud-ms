@@ -83,6 +83,8 @@ Now that the API is running, visit http://localhost:8002 to see the API document
 ### Hystrix Dashboard
 Visit http://localhost:8002/hystrix, type in the text box: http://localhost:8002/actuator/hystrix.stream and click on "Monitor Stream"
 
+![hystrix home](hystrix-home.png) ![hystrix dashboard](hystrix-dashboard.png)
+
 ## Person web app
 Web app using Thymeleaf and Bootstrap for creating and searching Person entities in the system
 
