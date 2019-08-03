@@ -1,14 +1,15 @@
 # Spring Cloud Microservice
-![Microservices Overiew](https://github.com/diogo-santos/spring-cloud-ms/blob/master/service-design.png)
+![Microservices Overiew](architecture-design.png)
 
 ## What was build
 Spring Cloud Microservices using external configurations, discover and consume services, and isolate from failure with the circuit breaker pattern
 
 - Actuator - Expose operational information about the running application
-- Swagger2 - Documentation from the API [Swagger.io](https://swagger.io)
-- Eureka - REST based Service Discovery [Eureka Netflix](https://github.com/Netflix/eureka/wiki/Eureka-at-a-glance)
-- Feign - Declarative REST Client [Spring Cloud OpenFeign](https://cloud.spring.io/spring-cloud-openfeign/single/spring-cloud-openfeign.html)
+- [Swagger.io](https://swagger.io) - Documentation from the API
+- [Eureka Netflix](https://github.com/Netflix/eureka/wiki/Eureka-at-a-glance) - REST based Service Discovery 
+- [Spring Cloud OpenFeign](https://cloud.spring.io/spring-cloud-openfeign/single/spring-cloud-openfeign.html) - Declarative REST Client
 - Hystrix - Circuit Break pattern
+- Hystrix Dashboard
 
 ## What you'll need
 
