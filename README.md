@@ -21,7 +21,7 @@ Maven 3.0+
 Import the project from GitHub
 
 ## Config Server
-Configuration server for Spring Cloud
+Configuration server for Spring Cloud that provides all config properties from Git
 
 Run config-server
 ```
