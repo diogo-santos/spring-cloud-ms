@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.Collections;
@@ -33,10 +34,11 @@ public class PersonController {
     }
 
     @PostMapping("/person")
-    public String createPerson(Model model, @Valid Person person, BindingResult result) {
+    public String createPerson(Model model, @Valid Person person, BindingResult result, RedirectAttributes redirectAttributes) {
         if (!result.hasErrors()) {
             person.getContacts().removeIf(c->StringUtils.isEmpty(c.getInfo()));
-            personService.create(person);
+            Person personSaved = personService.create(person);
+            redirectAttributes.addAttribute("personSaved", personSaved);
             return "redirect:/"+PERSON_PAGE;
         }
         return PERSON_PAGE;

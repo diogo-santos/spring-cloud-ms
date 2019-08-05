@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -19,6 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @AutoConfigureMockMvc
+@ActiveProfiles("test")
 public class ContactControllerTests {
 	@Autowired
 	private MockMvc mockMvc;
@@ -38,9 +40,9 @@ public class ContactControllerTests {
 		Contact contact = repository.save(new Contact(null,2L, "email@example.com"));
 		Assert.assertNotNull(contact);
 
-		mockMvc.perform(get("/contact/{idPerson}", 2L))
+		mockMvc.perform(get("/contact/{idPerson}", contact.getIdPerson()))
 				.andExpect(status().isOk())
-				.andExpect(jsonPath("$.[?(@.idPerson == '%s')]", "2").exists())
+				.andExpect(jsonPath("$.[?(@.idPerson == '%s')]", String.valueOf(contact.getIdPerson())).exists())
 				.andExpect(jsonPath("$.[?(@.info == '%s')]", "email@example.com").exists());
 	}
 }
