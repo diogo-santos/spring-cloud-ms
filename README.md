@@ -20,9 +20,9 @@ Maven 3.0+
 ## Instructions
 Import the project from GitHub
 
-Execute script to startup all services
+Build and Execute script to startup all services
 ```
-./run.sh
+mvn clean package && ./run.sh
 ```
 
 ## Config Server
