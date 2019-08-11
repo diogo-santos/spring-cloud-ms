@@ -4,6 +4,7 @@ import com.example.cloud.business.client.ContactService;
 import com.example.cloud.business.client.PersonService;
 import com.example.cloud.business.domain.Contact;
 import com.example.cloud.business.domain.Person;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,8 +47,10 @@ public class PersonBusinessProcess {
 
     public Person createPersonWithContactList(Person person) {
         final Person personSaved = this.personService.create(person);
-        if (null!=person.getContacts() && !person.getContacts().isEmpty()) {
-            person.getContacts().forEach(c->c.setIdPerson(personSaved.getId()));
+        if (null != personSaved && !isEmpty(person.getContacts())) {
+            person.getContacts().removeIf(contact -> contact == null || StringUtils.isEmpty(contact.getInfo()));
+            person.getContacts().forEach(contact -> contact.setIdPerson(personSaved.getId()));
+
             personSaved.setContacts(this.contactService.create(person.getContacts()));
         }
         return personSaved;
