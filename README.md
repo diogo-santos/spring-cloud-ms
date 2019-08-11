@@ -1,5 +1,5 @@
 # Spring Cloud Microservice
-![Microservices Overiew](architecture-design.png)
+![Microservices Overiew](readme-img/architecture-design.png)
 
 ## What was build
 Spring Cloud Microservices using external configurations, discover and consume services, and isolate from failure with the circuit breaker pattern
@@ -83,7 +83,7 @@ Now that the API is running, visit http://localhost:8002 to see the API document
 ### Hystrix Dashboard
 Visit http://localhost:8002/hystrix, type in the text box: http://localhost:8002/actuator/hystrix.stream and click on "Monitor Stream"
 
-![hystrix home](hystrix-home.png) ![hystrix dashboard](hystrix-dashboard.png)
+![hystrix home](readme-img/hystrix-home.png)
 
 ## Person web app
 Web app using Thymeleaf and Bootstrap for creating and searching Person entities in the system
