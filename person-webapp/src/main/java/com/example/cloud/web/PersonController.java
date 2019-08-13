@@ -2,6 +2,8 @@ package com.example.cloud.web;
 
 import com.example.cloud.web.client.PersonService;
 import com.example.cloud.web.domain.Person;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -13,6 +15,8 @@ import java.util.Collections;
 
 @Controller
 public class PersonController {
+    private static final Logger logger = LoggerFactory.getLogger(PersonController.class);
+
     private final PersonService personService;
     private static final String PERSON_PAGE = "person";
 
@@ -36,7 +40,8 @@ public class PersonController {
     public String createPerson(Model model, @Valid Person person, BindingResult result) {
         if (!result.hasErrors()) {
             person.getContacts().removeIf(c->StringUtils.isEmpty(c.getInfo()));
-            personService.create(person);
+            Person personSaved = personService.create(person);
+            logger.debug("Person saved {}", personSaved);
             return "redirect:/"+PERSON_PAGE;
         }
         return PERSON_PAGE;
