@@ -7,14 +7,12 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
+import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
-import static springfox.documentation.builders.PathSelectors.any;
 
 @SpringBootApplication
 @EnableSwagger2
@@ -23,20 +21,23 @@ import static springfox.documentation.builders.PathSelectors.any;
 @EnableCircuitBreaker
 @EnableHystrixDashboard
 public class PersonBusinessServicesApplication {
-	@Bean
-	public Docket api(){
-		return new Docket(DocumentationType.SWAGGER_2)
-				.groupName("PersonBusiness")
-				.select()
-				.apis(RequestHandlerSelectors.basePackage("com.example.business.person"))
-				.paths(any())
-				.build()
-				.apiInfo(new ApiInfo("Person Business Services",
-						"A set of services to provide business services for the Person domain", "0.0.1", null,
-						new Contact("Diogo S.", "http://github.com/diogo-santos", null),null, null));
-	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(PersonBusinessServicesApplication.class, args);
+	}
+
+	@Bean
+	public Docket swaggerApi() {
+		return new Docket(DocumentationType.SWAGGER_2)
+				.select()
+				.apis(RequestHandlerSelectors.basePackage("com.example.cloud.business"))
+				.paths(PathSelectors.any())
+				.build()
+				.apiInfo(new ApiInfoBuilder()
+						.title("Person Business Services")
+						.version("0.0.1")
+						.description("A set of services to provide business services for the Person domain")
+						.build());
+
 	}
 }
