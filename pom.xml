@@ -46,6 +46,7 @@
     <modules>
         <module>config-server</module>
         <module>eureka-server</module>
+        <module>gateway-server</module>
         <module>person-services</module>
         <module>person-contact-services</module>
         <module>person-business-services</module>
