@@ -41,24 +41,24 @@
         <div class="row">
             <div class="col-md-6"><span class="text-muted">Contact info (Optional)</span></div>
         </div>
-        <div class="row" th:if="${!#lists.isEmpty(person.contacts)}">
-            <div class="col-md-3 mb-3" th:if="${#lists.size(person.contacts)>0}">
+        <div class="row">
+            <div class="col-md-3 mb-3">
                 <input type="email" class="form-control" id="email" placeholder="you@example.com"
-                       th:field="*{contacts[0].info}" th:classappend="${#fields.hasErrors('contacts[0].info')}?'is-invalid'">
+                       th:field="*{email}" th:classappend="${#fields.hasErrors('email')}?'is-invalid'">
                 <div class="invalid-feedback">
                     Please enter a valid email address
                 </div>
             </div>
-            <div class="col-md-3 mb-3" th:if="${#lists.size(person.contacts)>1}">
+            <div class="col-md-3 mb-3">
                 <input type="text" class="form-control" id="phone" placeholder="Phone: 9876543210"
-                       th:field="*{contacts[1].info}" th:classappend="${#fields.hasErrors('contacts[1].info')}?'is-invalid'">
+                       th:field="*{phone}" th:classappend="${#fields.hasErrors('phone')}?'is-invalid'">
                 <div class="invalid-feedback">
                     Please enter a valid phone number
                 </div>
             </div>
-            <div class="col-md-3 mb-3" th:if="${#lists.size(person.contacts)>2}">
+            <div class="col-md-3 mb-3">
                 <input type="text" class="form-control" id="other" placeholder="Other"
-                       th:field="*{contacts[2].info}" th:classappend="${#fields.hasErrors('contacts[2].info')}?'is-invalid'">
+                       th:field="*{other}" th:classappend="${#fields.hasErrors('other')}?'is-invalid'">
                 <div class="invalid-feedback">
                     Please enter a valid contact info
                 </div>

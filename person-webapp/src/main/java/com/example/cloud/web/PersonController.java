@@ -6,12 +6,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Collections;
+
+import static java.util.Collections.singletonList;
 
 @Controller
 public class PersonController {
@@ -26,11 +26,14 @@ public class PersonController {
 
     @GetMapping({"/","/person"})
     public String getPeople(Model model, @RequestParam(required = false) Long id) {
-        Person findPerson;
-        if (null!=id && null!=(findPerson = personService.findById(id))) {
-            model.addAttribute(Collections.singletonList(findPerson));
+        Person person;
+        if (null != id && null != (person = personService.findById(id))) {
+            model.addAttribute(singletonList(person));
         } else {
-            model.addAttribute(personService.findAll());
+            Person[] people = personService.findAll();
+            if (null != people) {
+                model.addAttribute(people);
+            }
         }
         model.addAttribute(new Person());
         return PERSON_PAGE;
@@ -39,7 +42,7 @@ public class PersonController {
     @PostMapping("/person")
     public String createPerson(Model model, @Valid Person person, BindingResult result) {
         if (!result.hasErrors()) {
-            person.getContacts().removeIf(c->StringUtils.isEmpty(c.getInfo()));
+            person.setContactList();
             Person personSaved = personService.create(person);
             logger.debug("Person saved {}", personSaved);
             return "redirect:/"+PERSON_PAGE;

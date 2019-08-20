@@ -10,8 +10,6 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Contact {
-    private Long id;
-    private Long idPerson;
     @NotBlank
     private String info;
 }
