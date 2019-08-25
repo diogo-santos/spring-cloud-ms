@@ -1,0 +1,10 @@
+server:
+  port: 8762
+spring:
+  application:
+    name: gateway-server
+zuul:
+  routes:
+    person:
+      path: /person-service/**
+      serviceId: PERSONBUSINESSSERVICES
