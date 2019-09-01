@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Person {
+public class Customer {
     private Long id;
     private String firstName;
     private String lastName;

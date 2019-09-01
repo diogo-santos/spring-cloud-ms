@@ -14,7 +14,7 @@ public class ContactServiceFallbackImpl implements ContactService {
     }
 
     @Override
-    public List<Contact> findByIdPerson(long idPerson) {
+    public List<Contact> findByIdCustomer(long idCustomer) {
         return Collections.singletonList(new Contact(null, null, "Not Available"));
     }
 

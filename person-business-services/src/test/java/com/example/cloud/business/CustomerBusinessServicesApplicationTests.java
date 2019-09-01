@@ -18,35 +18,35 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @AutoConfigureMockMvc
-public class PersonBusinessServicesApplicationTests {
+public class CustomerBusinessServicesApplicationTests {
 	@Autowired
 	private MockMvc mockMvc;
 	@MockBean
-	private PersonBusinessProcess businessProcess;
+	private CustomerBusinessProcess businessProcess;
 
 	@Test
 	public void whenPerformGetThenListIsReturned() throws Exception {
-		mockMvc.perform(get("/person"))
+		mockMvc.perform(get("/customers"))
 				.andExpect(status().isOk());
 	}
 
 	@Test
-	public void givenIdPersonWhenPerformGetThenListIsReturned() throws Exception {
-		mockMvc.perform(get("/person/{idPerson}", 1))
+	public void givenIdCustomerWhenPerformGetThenListIsReturned() throws Exception {
+		mockMvc.perform(get("/customers/{idCustomer}", 1))
 				.andExpect(status().isOk());
 	}
 
 	@Test
-	public void givenPersonWithContactsWhenPerformPostThenPersonAndContactsAreCreated() throws Exception {
-		mockMvc.perform(post("/person")
+	public void givenCustomerWithContactsWhenPerformPostThenCustomerAndContactsAreCreated() throws Exception {
+		mockMvc.perform(post("/customers")
 						.contentType(APPLICATION_JSON_UTF8)
 						.content("{\"firstName\": \"GivenName\", \"lastName\":\"LastName\", \"contacts\":[{\"info\":\"email@example.com\"}]}"))
 				.andExpect(status().isOk());
 	}
 
 	@Test
-	public void givenPersonWithoutContactsWhenPerformPostThenPersonIsCreated() throws Exception {
-		mockMvc.perform(post("/person")
+	public void givenCustomerWithoutContactsWhenPerformPostThenCustomerIsCreated() throws Exception {
+		mockMvc.perform(post("/customers")
 				.contentType(APPLICATION_JSON_UTF8)
 				.content("{\"firstName\": \"GivenName\", \"lastName\":\"LastName\"}"))
 				.andExpect(status().isOk());

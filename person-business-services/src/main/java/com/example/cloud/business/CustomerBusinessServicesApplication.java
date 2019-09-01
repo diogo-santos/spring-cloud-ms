@@ -20,10 +20,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableFeignClients
 @EnableCircuitBreaker
 @EnableHystrixDashboard
-public class PersonBusinessServicesApplication {
+public class CustomerBusinessServicesApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PersonBusinessServicesApplication.class, args);
+		SpringApplication.run(CustomerBusinessServicesApplication.class, args);
 	}
 
 	@Bean
@@ -34,9 +34,9 @@ public class PersonBusinessServicesApplication {
 				.paths(PathSelectors.any())
 				.build()
 				.apiInfo(new ApiInfoBuilder()
-						.title("Person Business Services")
+						.title("Customer Business Services")
 						.version("0.0.1")
-						.description("A set of services to provide business services for the Person domain")
+						.description("A set of services to provide business services for the Customer domain")
 						.build());
 
 	}

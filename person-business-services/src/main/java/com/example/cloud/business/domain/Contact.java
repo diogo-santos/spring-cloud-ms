@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Contact {
     private Long id;
-    private Long idPerson;
+    private Long idCustomer;
     private String info;
 }

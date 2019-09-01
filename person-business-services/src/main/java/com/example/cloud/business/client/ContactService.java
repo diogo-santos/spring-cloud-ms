@@ -2,21 +2,18 @@ package com.example.cloud.business.client;
 
 import com.example.cloud.business.domain.Contact;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(value="PERSONCONTACTSERVICES", fallback = ContactServiceFallbackImpl.class)
+@FeignClient(value="CUSTOMERCONTACTSERVICES", fallback = ContactServiceFallbackImpl.class)
 public interface ContactService {
-    @RequestMapping(value="/contact", method= RequestMethod.GET)
+    @GetMapping("/contacts")
     List<Contact> findAll();
 
-    @RequestMapping(value="/contact/{idPerson}", method = RequestMethod.GET)
-    List<Contact> findByIdPerson(@PathVariable("idPerson") long idPerson);
+    @GetMapping("/contacts/{idCustomer}")
+    List<Contact> findByIdCustomer(@PathVariable("idCustomer") long idCustomer);
 
-    @RequestMapping(value="/contact", method = RequestMethod.POST)
+    @PostMapping("/contacts")
     List<Contact> create(@RequestBody List<Contact> contacts);
 }
