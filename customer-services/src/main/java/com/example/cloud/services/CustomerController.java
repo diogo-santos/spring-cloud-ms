@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "customers")
-@Api(value = "customer", tags = "customer")
+@RequestMapping("customers")
+@Api(value = "customers", tags = "customers")
 public class CustomerController {
     @Autowired
     private CustomerRepository repository;

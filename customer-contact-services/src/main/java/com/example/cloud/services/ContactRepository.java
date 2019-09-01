@@ -6,5 +6,5 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ContactRepository extends JpaRepository<Contact, Long> {
-    Optional<List<Contact>> findByIdPerson(Long idPerson);
+    Optional<List<Contact>> findByIdCustomer(Long idCustomer);
 }

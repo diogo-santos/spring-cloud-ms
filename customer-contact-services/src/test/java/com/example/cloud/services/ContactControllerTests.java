@@ -27,20 +27,20 @@ public class ContactControllerTests {
 
 	@Test
 	public void givenEntityToSaveWhenPerformPostThenEntityIsCreated() throws Exception {
-		mockMvc.perform(post("/contact")
+		mockMvc.perform(post("/contacts")
 				.contentType(APPLICATION_JSON_UTF8)
-				.content("[{\"idPerson\": \"1\", \"info\":\"test\"}]"))
+				.content("[{\"idCustomer\": \"1\", \"info\":\"test\"}]"))
 				.andExpect(status().isCreated());
 	}
 
 	@Test
-	public void givenIdPersonWhenPerformGetThenListContactEntityIsReturned() throws Exception {
+	public void givenIdCustomerWhenPerformGetThenListContactEntityIsReturned() throws Exception {
 		Contact contact = repository.save(new Contact(null,2L, "email@example.com"));
 		Assert.assertNotNull(contact);
 
-		mockMvc.perform(get("/contact/{idPerson}", contact.getIdPerson()))
+		mockMvc.perform(get("/contacts/{idCustomer}", contact.getIdCustomer()))
 				.andExpect(status().isOk())
-				.andExpect(jsonPath("$.[?(@.idPerson == '%s')]", String.valueOf(contact.getIdPerson())).exists())
+				.andExpect(jsonPath("$.[?(@.idCustomer == '%s')]", String.valueOf(contact.getIdCustomer())).exists())
 				.andExpect(jsonPath("$.[?(@.info == '%s')]", "email@example.com").exists());
 	}
 }

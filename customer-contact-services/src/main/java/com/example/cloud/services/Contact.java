@@ -19,7 +19,7 @@ public class Contact {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     @NotNull
-    private Long idPerson;
+    private Long idCustomer;
     @NotNull
     private String info;
 }
