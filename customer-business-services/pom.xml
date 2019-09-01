@@ -10,10 +10,10 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<artifactId>person-business-services</artifactId>
+	<artifactId>customer-business-services</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>person-business-services</name>
-	<description>Business Services for Person domain</description>
+	<name>customer-business-services</name>
+	<description>Business Services for customer domain</description>
 
 	<dependencies>
 		<dependency>

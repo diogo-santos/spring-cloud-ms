@@ -5,6 +5,6 @@ spring:
     name: gateway-server
 zuul:
   routes:
-    person:
-      path: /person-service/**
-      serviceId: PERSONBUSINESSSERVICES
+    customers:
+      path: /custumer-service/**
+      serviceId: CUSTOMERBUSINESSSERVICES

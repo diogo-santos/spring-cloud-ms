@@ -10,10 +10,10 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<artifactId>person-webapp</artifactId>
+	<artifactId>customer-webapp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>person-webapp</name>
-	<description>Web application for the person</description>
+	<name>customer-webapp</name>
+	<description>Web application for the customer</description>
 
 	<dependencies>
 		<dependency>

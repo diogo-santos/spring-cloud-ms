@@ -47,10 +47,10 @@
         <module>config-server</module>
         <module>eureka-server</module>
         <module>gateway-server</module>
-        <module>person-services</module>
-        <module>person-contact-services</module>
-        <module>person-business-services</module>
-        <module>person-webapp</module>
+        <module>customer-services</module>
+        <module>customer-contact-services</module>
+        <module>customer-business-services</module>
+        <module>customer-webapp</module>
     </modules>
 
 </project>

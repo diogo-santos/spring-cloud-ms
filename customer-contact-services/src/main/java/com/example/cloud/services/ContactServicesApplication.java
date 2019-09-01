@@ -30,7 +30,7 @@ public class ContactServicesApplication {
 				.apiInfo(new ApiInfoBuilder()
 						.title("Contact Services")
 						.version("0.0.1")
-						.description("A set of services to provide data access to person contacts")
+						.description("A set of services to provide data access to customer contacts")
 						.build());
 
 	}

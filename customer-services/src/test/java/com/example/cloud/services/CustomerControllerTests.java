@@ -21,7 +21,7 @@ public class CustomerControllerTests {
 	@Autowired
 	private MockMvc mockMvc;
 	@Autowired
-	private CustomerRepository personRepo;
+	private CustomerRepository customerRepo;
 
 	@Test
 	public void givenEntityToSaveWhenPerformPostThenEntityIsCreated() throws Exception {
@@ -32,11 +32,11 @@ public class CustomerControllerTests {
 	}
 
 	@Test
-	public void givenIdPersonWhenPerformGetThenListContactEntityIsReturned() throws Exception {
-		Customer person = personRepo.save(new Customer(null, "customerName", "lastNameCustomer"));
-		Assert.assertNotNull(person);
+	public void givenIdCustomerWhenPerformGetThenListContactEntityIsReturned() throws Exception {
+		Customer customer = customerRepo.save(new Customer(null, "customerName", "lastNameCustomer"));
+		Assert.assertNotNull(customer);
 
-		mockMvc.perform(get("/customers/{id}", person.getId()))
+		mockMvc.perform(get("/customers/{id}", customer.getId()))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$.[?(@.firstName == '%s')]", "customerName").exists())
 				.andExpect(jsonPath("$.[?(@.lastName == '%s')]", "lastNameCustomer").exists());

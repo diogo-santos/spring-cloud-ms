@@ -20,7 +20,7 @@ public class CustomerServiceFallbackImpl implements CustomerService {
     }
 
     @Override
-    public Customer create(Customer person) {
+    public Customer create(Customer customer) {
         return null;
     }
 }

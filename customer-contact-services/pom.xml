@@ -10,10 +10,10 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<artifactId>person-contact-services</artifactId>
+	<artifactId>customer-contact-services</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>person-contact-services</name>
-	<description>Data services for Person Contact domain</description>
+	<name>customer-contact-services</name>
+	<description>Data services for customer Contact domain</description>
 
 	<dependencies>
 		<dependency>

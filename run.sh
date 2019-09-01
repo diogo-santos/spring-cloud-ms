@@ -13,10 +13,10 @@ done
 
 echo "Starting services..."
 gnome-terminal -- java -jar gateway-server/target/gateway-server-0.0.1-SNAPSHOT.jar
-gnome-terminal -- java -jar person-services/target/person-services-0.0.1-SNAPSHOT.jar
-gnome-terminal -- java -jar person-contact-services/target/person-contact-services-0.0.1-SNAPSHOT.jar
-gnome-terminal -- java -jar person-business-services/target/person-business-services-0.0.1-SNAPSHOT.jar
-gnome-terminal -- java -jar person-webapp/target/person-webapp-0.0.1-SNAPSHOT.jar
+gnome-terminal -- java -jar customer-services/target/customer-services-0.0.1-SNAPSHOT.jar
+gnome-terminal -- java -jar customer-contact-services/target/customer-contact-services-0.0.1-SNAPSHOT.jar
+gnome-terminal -- java -jar customer-business-services/target/customer-business-services-0.0.1-SNAPSHOT.jar
+gnome-terminal -- java -jar customer-webapp/target/customer-webapp-0.0.1-SNAPSHOT.jar
 
 echo "All services have started"
 
