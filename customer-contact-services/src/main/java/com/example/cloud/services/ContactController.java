@@ -24,7 +24,7 @@ public class ContactController {
         return repository.findAll();
     }
 
-    @GetMapping(path = "/{idCustomer}")
+    @GetMapping("/{idCustomer}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Get contacts by customer id", notes = "Get contact list based on its customer id", nickname = "getContactsByIdCustomer")
     public List<Contact> findByIdCustomer(@PathVariable long idCustomer) {

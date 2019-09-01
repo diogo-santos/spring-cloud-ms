@@ -23,7 +23,7 @@ public class CustomerController {
         return repository.findAll();
     }
 
-    @GetMapping(path = "/{id}")
+    @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Get customer", notes = "Get a single customer based on its unique id", nickname = "getCustomer")
     public Customer findById(@PathVariable long id){
