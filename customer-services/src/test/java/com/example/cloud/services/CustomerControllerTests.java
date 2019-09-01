@@ -17,15 +17,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @AutoConfigureMockMvc
-public class PersonControllerTests {
+public class CustomerControllerTests {
 	@Autowired
 	private MockMvc mockMvc;
 	@Autowired
-	private PersonRepository personRepo;
+	private CustomerRepository personRepo;
 
 	@Test
 	public void givenEntityToSaveWhenPerformPostThenEntityIsCreated() throws Exception {
-		mockMvc.perform(post("/person")
+		mockMvc.perform(post("/customers")
 						.contentType(APPLICATION_JSON_UTF8)
 						.content("{\"firstName\": \"GivenName\", \"lastName\":\"LastName\"}"))
 				.andExpect(status().isCreated());
@@ -33,12 +33,12 @@ public class PersonControllerTests {
 
 	@Test
 	public void givenIdPersonWhenPerformGetThenListContactEntityIsReturned() throws Exception {
-		Person person = personRepo.save(new Person(null, "personName", "lastPersonName"));
+		Customer person = personRepo.save(new Customer(null, "customerName", "lastNameCustomer"));
 		Assert.assertNotNull(person);
 
-		mockMvc.perform(get("/person/{id}", person.getId()))
+		mockMvc.perform(get("/customers/{id}", person.getId()))
 				.andExpect(status().isOk())
-				.andExpect(jsonPath("$.[?(@.firstName == '%s')]", "personName").exists())
-				.andExpect(jsonPath("$.[?(@.lastName == '%s')]", "lastPersonName").exists());
+				.andExpect(jsonPath("$.[?(@.firstName == '%s')]", "customerName").exists())
+				.andExpect(jsonPath("$.[?(@.lastName == '%s')]", "lastNameCustomer").exists());
 	}
 }

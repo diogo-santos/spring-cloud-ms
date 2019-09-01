@@ -1,5 +1,5 @@
 # Spring Cloud Microservice
-![Microservices Overview](readme-img/architecture-design.png)
+![Microservices Overview](architecture-design.png)
 
 ## What was built
 Spring Cloud Microservices using external configurations, discover and consume services, and isolate from failure with the circuit breaker pattern
@@ -10,7 +10,7 @@ Spring Cloud Microservices using external configurations, discover and consume s
 - [Spring Cloud OpenFeign](https://cloud.spring.io/spring-cloud-openfeign/single/spring-cloud-openfeign.html) - Declarative REST Client
 - Hystrix - Circuit Break pattern
 - Hystrix Dashboard
-- Zuul - Gateway Server
+- [Zuul](https://github.com/Netflix/zuul) - Gateway Server
 
 ## What you'll need
 
@@ -52,11 +52,11 @@ A set of services to consume Person services from Eureka Server with Feign
 When the service is up and running, visit http://localhost:8002 to see the API documentation using Swagger2 with the list of exposed endpoints
 
 ## Person web app
-Web app using Thymeleaf and Bootstrap for creating and display Person entities in the system
+Web app using Thymeleaf and Bootstrap for creating and display Person entities in the system, Rest calls using Spring React
 
 When the service is up and running, visit http://localhost:8004/person to see the landing web page
 
 ## Hystrix Dashboard
 Visit http://localhost:8002/hystrix, type in the text box: http://localhost:8002/actuator/hystrix.stream and click on "Monitor Stream"
 
-![hystrix home](readme-img/hystrix-home.png)
+![hystrix home](hystrix-home.png)
