@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <title>Person Web</title>
+    <title>Customer Web</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
@@ -13,15 +13,15 @@
 <nav class="navbar navbar-dark bg-dark">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="person">Person Web</a>
+            <a class="navbar-brand" href="customer">Customer Web</a>
         </div>
     </div>
 </nav>
 <div class="container">
     <div class="pb-2 mt-2 mb-2 border-bottom">
-        Welcome to the Person Page
+        Welcome to the Customer Page
     </div>
-    <form th:if="${person!=null}" action="#" th:action="@{/person}" th:object="${person}" method="post">
+    <form th:if="${customer!=null}" action="#" th:action="@{/customer}" th:object="${customer}" method="post">
         <div class="row">
             <div class="col-md-5 mb-3">
                 <input type="text" class="form-control" id="firstName" placeholder="First name" value="" required
@@ -66,10 +66,10 @@
         </div>
         <div class="d-flex flex-row">
             <div class="p-2">
-                <input class="btn btn-dark" type="submit" value="Add Person">
+                <input class="btn btn-dark" type="submit" value="Add Customer">
             </div>
             <div class="p-2">
-                <a class="btn btn-dark" href="person">Show All</a>
+                <a class="btn btn-dark" href="customer">Show All</a>
             </div>
         </div>
     </form>
@@ -84,20 +84,20 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:if="${!#lists.isEmpty(personList)}" th:each="person: ${personList}">
-            <th scope="row"><a th:href="@{/person(id=${person.id})}"><span th:text="${person.id}">...</span></a></th>
-            <td th:text="${person.firstName}">...</td>
-            <td th:text="${person.lastName}">...</td>
+        <tr th:if="${!#lists.isEmpty(customerList)}" th:each="customer: ${customerList}">
+            <th scope="row"><a th:href="@{/customer(id=${customer.id})}"><span th:text="${customer.id}">...</span></a></th>
+            <td th:text="${customer.firstName}">...</td>
+            <td th:text="${customer.lastName}">...</td>
             <td>
-               <th:block th:if="${null!=person.contacts}" th:each="contact, iteratorStatus : ${person.contacts}">
+               <th:block th:if="${null!=customer.contacts}" th:each="contact, iteratorStatus : ${customer.contacts}">
                     <span th:text="${#strings.concat(contact.info, !iteratorStatus.last?', ':'')}">...</span>
                </th:block>
             </td>
         </tr>
         </tbody>
     </table>
-    <div th:if="${#lists.isEmpty(personList)}">
-        <td colspan="4">No Person has been created</td>
+    <div th:if="${#lists.isEmpty(customerList)}">
+        <td colspan="4">No Customer has been created</td>
     </div>
 </div>
 

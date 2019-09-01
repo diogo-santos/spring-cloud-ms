@@ -16,7 +16,7 @@ import static org.springframework.util.StringUtils.isEmpty;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Person implements Serializable {
+public class Customer implements Serializable {
     private Long id;
     @Size(max = 20)
     @NotBlank

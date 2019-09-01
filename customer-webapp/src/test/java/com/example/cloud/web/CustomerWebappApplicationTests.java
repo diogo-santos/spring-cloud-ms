@@ -1,6 +1,6 @@
 package com.example.cloud.web;
 
-import com.example.cloud.web.client.PersonService;
+import com.example.cloud.web.client.CustomerService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,41 +19,41 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @AutoConfigureMockMvc
-public class PersonWebappApplicationTests {
+public class CustomerWebappApplicationTests {
 	@Autowired
 	private MockMvc mockMvc;
 	@MockBean
-	private PersonService personService;
+	private CustomerService customerService;
 
 	@Test
 	public void whenGetThenShowWelcomePage() throws Exception {
-		this.mockMvc.perform(get("/person"))
+		this.mockMvc.perform(get("/customer"))
 				.andExpect(content()
-						.string(containsString("Welcome to the Person Page")));
+						.string(containsString("Welcome to the Customer Page")));
 	}
 
 	@Test
-	public void givenPersonWithNullFieldsWhenPostThenReturnFieldErrors() throws Exception {
-		this.mockMvc.perform(post("/person"))
+	public void givenCustomerWithNullFieldsWhenPostThenReturnFieldErrors() throws Exception {
+		this.mockMvc.perform(post("/customer"))
 					.andExpect(model()
-						.attributeHasFieldErrors("person","firstName", "lastName"));
+						.attributeHasFieldErrors("customer","firstName", "lastName"));
 	}
 
 	@Test
-	public void givenPersonWithEmptyFieldsWhenPostThenReturnFieldErrors() throws Exception {
-		this.mockMvc.perform(post("/person")
+	public void givenCustomerWithEmptyFieldsWhenPostThenReturnFieldErrors() throws Exception {
+		this.mockMvc.perform(post("/customer")
 							.param("firstName", "")
 							.param("lastName", ""))
 					.andExpect(model()
-						.attributeHasFieldErrors("person","firstName", "lastName"));
+						.attributeHasFieldErrors("customer","firstName", "lastName"));
 	}
 
 	@Test
-	public void givenPersonWhenPostThenPersonIsSaved() throws Exception {
-		this.mockMvc.perform(post("/person")
+	public void givenCustomerWhenPostThenCustomerIsSaved() throws Exception {
+		this.mockMvc.perform(post("/customer")
 							.param("firstName", "test")
 							.param("lastName", "test"))
 					.andExpect(view()
-						.name("redirect:/person"));
+						.name("redirect:/customer"));
 	}
 }
