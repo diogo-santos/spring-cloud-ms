@@ -3,8 +3,10 @@ server:
 spring:
   application:
     name: gateway-server
+ribbon:
+  ReadTimeout: 60000
 zuul:
   routes:
     customers:
-      path: /custumer-service/**
+      path: /customer-service/**
       serviceId: CUSTOMERBUSINESSSERVICES

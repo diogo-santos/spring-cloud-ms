@@ -17,20 +17,20 @@ import static java.util.Collections.singletonList;
 public class CustomerController {
     private static final Logger logger = LoggerFactory.getLogger(CustomerController.class);
 
-    private final CustomerService customerService;
+    private final CustomerService service;
     private static final String CUSTOMER_PAGE = "customer";
 
     public CustomerController(CustomerService customerService) {
-        this.customerService = customerService;
+        this.service = customerService;
     }
 
     @GetMapping({"/","/customer"})
     public String getPeople(Model model, @RequestParam(required = false) Long id) {
         Customer customer;
-        if (null != id && null != (customer = customerService.findById(id))) {
+        if (null != id && null != (customer = service.findById(id))) {
             model.addAttribute(singletonList(customer));
         } else {
-            Customer[] people = customerService.findAll();
+            Customer[] people = service.findAll();
             if (null != people) {
                 model.addAttribute(people);
             }
@@ -43,7 +43,7 @@ public class CustomerController {
     public String createCustomer(Model model, @Valid Customer customer, BindingResult result) {
         if (!result.hasErrors()) {
             customer.setContactList();
-            Customer customerSaved = customerService.create(customer);
+            Customer customerSaved = service.create(customer);
             logger.debug("Customer saved {}", customerSaved);
             return "redirect:/"+CUSTOMER_PAGE;
         }
