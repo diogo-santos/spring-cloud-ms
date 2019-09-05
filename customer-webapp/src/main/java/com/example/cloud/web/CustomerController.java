@@ -27,10 +27,10 @@ public class CustomerController {
     @GetMapping({"/","/customer"})
     public String getPeople(Model model, @RequestParam(required = false) Long id) {
         Customer customer;
-        if (null != id && null != (customer = service.findById(id))) {
+        if (null != id && null != (customer = service.getCustomer(id))) {
             model.addAttribute(singletonList(customer));
         } else {
-            Customer[] people = service.findAll();
+            Customer[] people = service.getCustomers();
             if (null != people) {
                 model.addAttribute(people);
             }
@@ -42,9 +42,8 @@ public class CustomerController {
     @PostMapping("/customer")
     public String createCustomer(Model model, @Valid Customer customer, BindingResult result) {
         if (!result.hasErrors()) {
-            customer.setContactList();
-            Customer customerSaved = service.create(customer);
-            logger.debug("Customer saved {}", customerSaved);
+            Customer customerResponse = service.create(customer);
+            logger.debug("Customer saved {}", customerResponse);
             return "redirect:/"+CUSTOMER_PAGE;
         }
         return CUSTOMER_PAGE;

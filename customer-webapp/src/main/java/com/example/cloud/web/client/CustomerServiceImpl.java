@@ -20,8 +20,8 @@ public class CustomerServiceImpl implements CustomerService {
         this.webClient = webClientBuilder.baseUrl(gatewayServer).build();
     }
 
-    public Customer[] findAll() {
-        logger.debug("In findAll");
+    public Customer[] getCustomers() {
+        logger.debug("In getCustomers");
         return this.webClient.get().uri("/customer-service/customers")
                 .retrieve().bodyToMono(Customer[].class)
                 .doOnError(throwable -> logger.error(throwable.getMessage(), throwable))
@@ -29,8 +29,8 @@ public class CustomerServiceImpl implements CustomerService {
                 .block();
     }
 
-    public Customer findById(long id) {
-        logger.debug("In findById with {}", id);
+    public Customer getCustomer(long id) {
+        logger.debug("In getCustomer with {}", id);
         return this.webClient.get().uri("/customer-service/customers/{id}", id)
                 .retrieve().bodyToMono(Customer.class)
                 .doOnError(throwable -> logger.error(throwable.getMessage(), throwable))
@@ -40,12 +40,18 @@ public class CustomerServiceImpl implements CustomerService {
 
     public Customer create(Customer customer) {
         logger.debug("In create with {}", customer);
-        return this.webClient.post().uri("/customer-service/customers")
+        customer.createContactList();
+
+        Customer customerResponse = this.webClient.post()
+                .uri("/customer-service/customers")
                 .body(Mono.just(customer), Customer.class)
                 .retrieve()
                 .bodyToMono(Customer.class)
                 .doOnError(throwable -> logger.error(throwable.getMessage(), throwable))
                 .onErrorReturn(CUSTOMER_NOT_AVAILABLE)
                 .block();
+
+        logger.debug("Out create with {}", customerResponse);
+        return customerResponse;
     }
 }

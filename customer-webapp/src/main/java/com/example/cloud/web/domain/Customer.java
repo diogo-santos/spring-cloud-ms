@@ -33,7 +33,7 @@ public class Customer implements Serializable {
 
     private List<Contact> contacts;
 
-    public void setContactList() {
+    public void createContactList() {
         contacts = Stream.of(email, phone, other)
                 .filter(contact -> !isEmpty(contact))
                 .map(Contact::new)
