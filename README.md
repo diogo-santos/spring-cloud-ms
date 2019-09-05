@@ -1,7 +1,7 @@
 # Spring Cloud Microservice
 ![Microservices Overview](architecture-design.png)
 
-## What was built
+## 
 Spring Cloud Microservices using external configurations, discover and consume services, and isolate from failure with the circuit breaker pattern
 
 - Actuator - Expose operational information about the running application
@@ -47,12 +47,12 @@ A set of services to provide data access to Contact info
 When the service is up and running, visit http://localhost:8003 to see the API documentation using Swagger2 with the list of exposed endpoints
 
 ## Customer business services
-A set of services to consume Customer services from Eureka Server with Feign 
+A set of services to consume and consolidate Customer resources from Eureka Server and leveraging Feign for declarative REST calls
 
 When the service is up and running, visit http://localhost:8002 to see the API documentation using Swagger2 with the list of exposed endpoints
 
 ## Customer web app
-Web app using Thymeleaf and Bootstrap for creating and display Customer entities in the system, Rest calls using Spring React
+Web app using Thymeleaf, Bootstrap and REST calls using Spring React for creating and display Customer entities
 
 When the service is up and running, visit http://localhost:8004/customer to see the landing web page
 
