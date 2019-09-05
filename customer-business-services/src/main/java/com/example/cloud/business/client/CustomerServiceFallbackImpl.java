@@ -10,12 +10,12 @@ import java.util.List;
 public class CustomerServiceFallbackImpl implements CustomerService {
 
     @Override
-    public List<Customer> findAll() {
+    public List<Customer> getCustomers() {
         return Collections.emptyList();
     }
 
     @Override
-    public Customer findById(long id) {
+    public Customer getCustomer(long id) {
         return new Customer(null, "Not", "Available", Collections.emptyList());
     }
 

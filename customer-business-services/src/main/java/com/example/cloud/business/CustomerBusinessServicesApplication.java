@@ -36,7 +36,7 @@ public class CustomerBusinessServicesApplication {
 				.apiInfo(new ApiInfoBuilder()
 						.title("Customer Business Services")
 						.version("0.0.1")
-						.description("A set of services to provide business services for the Customer domain")
+						.description("A set of services to provide consolidated data for the Customer domain")
 						.build());
 
 	}

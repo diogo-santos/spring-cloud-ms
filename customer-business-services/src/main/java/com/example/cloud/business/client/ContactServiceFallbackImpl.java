@@ -9,12 +9,12 @@ import java.util.List;
 @Component
 public class ContactServiceFallbackImpl implements ContactService {
     @Override
-    public List<Contact> findAll() {
+    public List<Contact> getContacts() {
         return Collections.emptyList();
     }
 
     @Override
-    public List<Contact> findByIdCustomer(long idCustomer) {
+    public List<Contact> getContacts(long idCustomer) {
         return Collections.singletonList(new Contact(null, null, "Not Available"));
     }
 

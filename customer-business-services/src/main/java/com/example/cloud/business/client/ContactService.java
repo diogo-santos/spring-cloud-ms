@@ -9,10 +9,10 @@ import java.util.List;
 @FeignClient(value="CUSTOMERCONTACTSERVICES", fallback = ContactServiceFallbackImpl.class)
 public interface ContactService {
     @GetMapping("/contacts")
-    List<Contact> findAll();
+    List<Contact> getContacts();
 
     @GetMapping("/contacts/{idCustomer}")
-    List<Contact> findByIdCustomer(@PathVariable("idCustomer") long idCustomer);
+    List<Contact> getContacts(@PathVariable("idCustomer") long idCustomer);
 
     @PostMapping("/contacts")
     List<Contact> create(@RequestBody List<Contact> contacts);
