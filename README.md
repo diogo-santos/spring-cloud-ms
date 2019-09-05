@@ -1,7 +1,6 @@
 # Spring Cloud Microservice
 ![Microservices Overview](architecture-design.png)
 
-## 
 Spring Cloud Microservices using external configurations, discover and consume services, and isolate from failure with the circuit breaker pattern
 
 - Actuator - Expose operational information about the running application
