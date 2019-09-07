@@ -12,7 +12,6 @@ Spring Cloud Microservices using external configurations, discover and consume s
 - [Zuul](https://github.com/Netflix/zuul) - Gateway Server
 
 ## What you'll need
-
 Java 1.8
 
 Maven 3.0+
@@ -50,12 +49,12 @@ A set of services to consume and consolidate Customer resources from Eureka Serv
 
 When the service is up and running, visit http://localhost:8002 to see the API documentation using Swagger2 with the list of exposed endpoints
 
+## Customer business services - Hystrix Dashboard
+Visit http://localhost:8002/hystrix, type in the text box: http://localhost:8002/actuator/hystrix.stream and click on "Monitor Stream"
+
+![hystrix home](hystrix-home.png)
+
 ## Customer web app
 Web app using Thymeleaf, Bootstrap and REST calls using Spring React for creating and display Customer entities
 
 When the service is up and running, visit http://localhost:8004/customer to see the landing web page
-
-## Hystrix Dashboard
-Visit http://localhost:8002/hystrix, type in the text box: http://localhost:8002/actuator/hystrix.stream and click on "Monitor Stream"
-
-![hystrix home](hystrix-home.png)
