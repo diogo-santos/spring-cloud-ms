@@ -28,7 +28,7 @@ public class CustomerWebappApplicationTests {
 	public void whenGetThenShowWelcomePage() throws Exception {
 		this.mockMvc.perform(get("/customer"))
 				.andExpect(content()
-						.string(containsString("Welcome to the Customer Page")));
+						.string(containsString("No Customer has been created")));
 	}
 
 	@Test

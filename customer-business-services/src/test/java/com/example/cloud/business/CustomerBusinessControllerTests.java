@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @AutoConfigureMockMvc
-public class CustomerBusinessServicesApplicationTests {
+public class CustomerBusinessControllerTests {
 	@Autowired
 	private MockMvc mockMvc;
 	@MockBean

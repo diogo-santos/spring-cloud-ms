@@ -4,6 +4,8 @@ import com.example.cloud.business.client.ContactService;
 import com.example.cloud.business.client.CustomerService;
 import com.example.cloud.business.domain.Contact;
 import com.example.cloud.business.domain.Customer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -21,7 +23,9 @@ import static org.apache.commons.lang.StringUtils.isNotBlank;
 import static org.springframework.util.CollectionUtils.isEmpty;
 
 @Service
-public class CustomerBusinessProcess {
+class CustomerBusinessProcess {
+    private static final Logger logger = LoggerFactory.getLogger(CustomerBusinessController.class);
+
     private final CustomerService customerService;
     private final ContactService contactService;
 
@@ -31,13 +35,16 @@ public class CustomerBusinessProcess {
         this.contactService = contactService;
     }
 
-    List<Customer> getCustomersWithContactList() throws Throwable {
-        CompletableFuture<List<Customer>> customersAsync = this.getCustomers();
-        CompletableFuture<List<Contact>> contactsAsync = this.getContacts();
+    List<Customer> getCustomersWithContactList() {
+        CompletableFuture<List<Customer>> customersFuture = this.getCustomers();
+        CompletableFuture<List<Contact>> contactsFuture = this.getContacts();
 
-        List<Contact> contacts = contactsAsync.get();
-        List<Customer> customers = customersAsync.get();
-        if (!isEmpty(contacts) && !isEmpty(customers)) {
+        CompletableFuture<Void> allOfFutures = CompletableFuture.allOf(customersFuture, contactsFuture);
+        allOfFutures.exceptionally(e -> {logger.error(e.getMessage(), e); return null;});
+
+        List<Customer> customers = customersFuture.join();
+        List<Contact> contacts = contactsFuture.join();
+        if (!isEmpty(customers) && !isEmpty(contacts)) {
             Map<Long, List<Contact>> contactMap = contacts.stream()
                     .collect(groupingBy(Contact::getIdCustomer));
 
@@ -49,13 +56,16 @@ public class CustomerBusinessProcess {
         return customers;
     }
 
-    Customer getCustomerWithContactList(final long id) throws Throwable {
-        CompletableFuture<Customer> customerAsync = this.getCustomer(id);
-        CompletableFuture<List<Contact>> contactsAsync = this.getContacts(id);
+    Customer getCustomerWithContactList(final long id) {
+        CompletableFuture<Customer> customerFuture = this.getCustomer(id);
+        CompletableFuture<List<Contact>> contactsFuture = this.getContacts(id);
 
-        Customer customer = customerAsync.get();
+        CompletableFuture<Void> allOfFutures = CompletableFuture.allOf(customerFuture, contactsFuture);
+        allOfFutures.exceptionally(e -> { logger.error(e.getMessage(), e); return null; });
+
+        Customer customer = customerFuture.join();
         if (nonNull(customer)) {
-            customer.setContacts(contactsAsync.get());
+            customer.setContacts(contactsFuture.join());
         }
         return customer;
     }

@@ -2,7 +2,6 @@
 ![Microservices Overview](architecture-design.png)
 
 Spring Cloud Microservices using configuration properties server, Eureka service discovery, Zuul gateway server, and isolate from failure with Hystrix
-
 - [ ] Actuator - Expose operational information about the running application
 - [ ] [Swagger.io](https://swagger.io) - Documentation from the API
 - [ ] [Eureka Netflix](https://github.com/Netflix/eureka/wiki/Eureka-at-a-glance) - REST based Service Discovery 
@@ -17,7 +16,7 @@ Spring Cloud Microservices using configuration properties server, Eureka service
 
 Import the project from GitHub
 
-Build and Execute script to startup all services
+Build and execute script to start all services
 ```
 mvn clean package && ./run.sh
 ```
@@ -43,16 +42,16 @@ A set of services to provide data access to Contact info
 When the service is up and running, visit http://localhost:8003 to see the API documentation using Swagger2 with the list of exposed endpoints
 
 ## Customer business services
-A set of services to consume Customer services from Eureka Server with Feign 
+A set of services to consume and consolidate Customer resources from Eureka Server and leveraging Feign for declarative REST calls
 
-When the service is up and running, visit http://localhost:8002 to see the API documentation using Swagger2 with the list of exposed endpoints
+When the service is up and running, visit http://localhost:8002 to see the API documentation using Swagger2 to see the list of exposed endpoints
 
-## Customer web app
-Web app using Thymeleaf and Bootstrap for creating and display Customer entities in the system, Rest calls using Spring React
-
-When the service is up and running, visit http://localhost:8080 to see the landing web page
-
-## Hystrix Dashboard
+## Hystrix Dashboard - Customer business services
 Visit http://localhost:8002/hystrix, type in the text box: http://localhost:8002/actuator/hystrix.stream and click on "Monitor Stream"
 
 ![hystrix home](hystrix-home.png)
+
+## Customer web app
+Web app using Thymeleaf, Bootstrap and REST calls using Spring React for creating and display Customer entities
+
+When the service is up and running, visit http://localhost:8080/customer to see the landing web page

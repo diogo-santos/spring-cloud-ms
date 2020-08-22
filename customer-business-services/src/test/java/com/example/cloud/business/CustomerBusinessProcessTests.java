@@ -18,7 +18,7 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class CustomerBusinessProcessTest {
+public class CustomerBusinessProcessTests {
 
     @InjectMocks
     private CustomerBusinessProcess businessProcess;
@@ -36,7 +36,7 @@ public class CustomerBusinessProcessTest {
     }
 
     @Test
-    public void givenCustomersAndContactsWhenGetAllCustomersThenReturnCustomersWithContactList() throws Throwable {
+    public void givenCustomersAndContactsWhenGetAllCustomersThenReturnCustomersWithContactList() {
         //GIVEN
         Customer customer1 = new Customer();
         customer1.setId(1L);
@@ -69,7 +69,7 @@ public class CustomerBusinessProcessTest {
     }
 
     @Test
-    public void givenCustomerIdWhenGetCustomerByIdThenReturnCustomerWithContactList() throws Throwable {
+    public void givenCustomerIdWhenGetCustomerByIdThenReturnCustomerWithContactList() {
         //GIVEN
         Customer customer = new Customer();
         customer.setId(2L);

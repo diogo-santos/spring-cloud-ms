@@ -10,24 +10,24 @@ import java.util.List;
 
 @RestController
 @Api(value="CustomerBusiness", tags=("customerBusiness"))
-public class CustomerController {
+public class CustomerBusinessController {
 
     private CustomerBusinessProcess businessProcess;
 
     @Autowired
-    public CustomerController(CustomerBusinessProcess businessProcess) {
+    public CustomerBusinessController(CustomerBusinessProcess businessProcess) {
         this.businessProcess = businessProcess;
     }
 
     @GetMapping("/customers")
     @ApiOperation(value="Get all Customer", notes="Gets all customers with contact list in the system", nickname="getCustomers")
-    public List<Customer> getCustomers() throws Throwable {
+    public List<Customer> getCustomers() {
         return businessProcess.getCustomersWithContactList();
     }
 
     @GetMapping("/customers/{id}")
     @ApiOperation(value = "Get customer", notes = "Get a single customer with contact list based on its unique id", nickname = "getCustomer")
-    public Customer getCustomer(@PathVariable long id) throws Throwable {
+    public Customer getCustomer(@PathVariable long id) {
         return businessProcess.getCustomerWithContactList(id);
     }
 

@@ -2,7 +2,6 @@ package com.example.cloud.services;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -14,8 +13,12 @@ import java.util.List;
 @RequestMapping("contacts")
 @Api(value = "contacts", tags = "contacts")
 public class ContactController {
-    @Autowired
+
     private ContactRepository repository;
+
+    public ContactController(ContactRepository repository) {
+        this.repository = repository;
+    }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
