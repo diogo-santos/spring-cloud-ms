@@ -10,8 +10,7 @@ import reactor.core.publisher.Mono;
 
 @Service
 public class CustomerService {
-    private Logger logger = LoggerFactory.getLogger(CustomerService.class);
-    private static final Customer CUSTOMER_NOT_AVAILABLE = Customer.builder().firstName("Customer data not available").build();
+    private final Logger logger = LoggerFactory.getLogger(CustomerService.class);
 
     private final WebClient webClient;
 
@@ -25,7 +24,7 @@ public class CustomerService {
         return this.webClient.get().uri("/customer-service/customers")
                 .retrieve().bodyToMono(Customer[].class)
                 .doOnError(throwable -> logger.error(throwable.getMessage(), throwable))
-                .onErrorReturn(new Customer[]{CUSTOMER_NOT_AVAILABLE})
+                .onErrorReturn(new Customer[]{})
                 .block();
     }
 
@@ -34,7 +33,6 @@ public class CustomerService {
         return this.webClient.get().uri("/customer-service/customers/{id}", id)
                 .retrieve().bodyToMono(Customer.class)
                 .doOnError(throwable -> logger.error(throwable.getMessage(), throwable))
-                .onErrorReturn(CUSTOMER_NOT_AVAILABLE)
                 .block();
     }
 
@@ -48,7 +46,6 @@ public class CustomerService {
                 .retrieve()
                 .bodyToMono(Customer.class)
                 .doOnError(throwable -> logger.error(throwable.getMessage(), throwable))
-                .onErrorReturn(CUSTOMER_NOT_AVAILABLE)
                 .block();
 
         logger.debug("Out create with {}", customerResponse);
