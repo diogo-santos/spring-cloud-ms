@@ -40,7 +40,7 @@ public class CustomerBusinessServicesApplicationTests {
 	public void givenCustomerWithContactsWhenPerformPostThenCustomerAndContactsAreCreated() throws Exception {
 		mockMvc.perform(post("/customers")
 						.contentType(APPLICATION_JSON_UTF8)
-						.content("{\"firstName\": \"GivenName\", \"lastName\":\"LastName\", \"contacts\":[{\"info\":\"email@example.com\"}]}"))
+						.content("{\"firstName\": \"GivenName\", \"lastName\":\"LastName\", \"contacts\":[{\"description\":\"email@example.com\"}]}"))
 				.andExpect(status().isOk());
 	}
 

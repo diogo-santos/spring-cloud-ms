@@ -18,9 +18,7 @@
     </div>
 </nav>
 <div class="container">
-    <div class="pb-2 mt-2 mb-2 border-bottom">
-        Welcome to the Customer Page
-    </div>
+    <br>
     <form th:if="${customer!=null}" action="#" th:action="@{/customer}" th:object="${customer}" method="post">
         <div class="row">
             <div class="col-md-5 mb-3">
@@ -85,14 +83,17 @@
         </thead>
         <tbody>
         <tr th:if="${!#lists.isEmpty(customerList)}" th:each="customer: ${customerList}">
-            <th scope="row"><a th:href="@{/customer(id=${customer.id})}"><span th:text="${customer.id}">...</span></a></th>
-            <td th:text="${customer.firstName}">...</td>
-            <td th:text="${customer.lastName}">...</td>
-            <td>
-               <th:block th:if="${null!=customer.contacts}" th:each="contact, iteratorStatus : ${customer.contacts}">
-                    <span th:text="${#strings.concat(contact.info, !iteratorStatus.last?', ':'')}">...</span>
-               </th:block>
-            </td>
+            <th:block th:if="${null != customer}">
+                <th scope="row"><a th:href="@{/customer(id=${customer.id})}"><span th:text="${customer.id}">...</span></a></th>
+                <td th:text="${customer.firstName}">...</td>
+                <td th:text="${customer.lastName}">...</td>
+                <td>
+                   <th:block th:if="${null != customer.contacts}" th:each="contact, iteratorStatus : ${customer.contacts}">
+                        <span th:if="${null != contact}"
+                              th:text="${#strings.concat(contact.description, !iteratorStatus.last?', ':'')}">...</span>
+                   </th:block>
+                </td>
+            </th:block>
         </tr>
         </tbody>
     </table>

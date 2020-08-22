@@ -21,5 +21,5 @@ public class Contact {
     @NotNull
     private Long idCustomer;
     @NotNull
-    private String info;
+    private String description;
 }

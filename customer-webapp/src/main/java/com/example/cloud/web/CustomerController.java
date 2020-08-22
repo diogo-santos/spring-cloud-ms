@@ -1,6 +1,5 @@
 package com.example.cloud.web;
 
-import com.example.cloud.web.client.CustomerService;
 import com.example.cloud.web.domain.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 import static java.util.Collections.singletonList;
+import static java.util.Objects.nonNull;
 
 @Controller
 public class CustomerController {
@@ -25,15 +25,13 @@ public class CustomerController {
     }
 
     @GetMapping({"/","/customer"})
-    public String getPeople(Model model, @RequestParam(required = false) Long id) {
-        Customer customer;
-        if (null != id && null != (customer = service.getCustomer(id))) {
+    public String getCustomer(Model model, @RequestParam(required = false) Long id) {
+        if (nonNull(id)) {
+            Customer customer = service.getCustomer(id);
             model.addAttribute(singletonList(customer));
         } else {
-            Customer[] people = service.getCustomers();
-            if (null != people) {
-                model.addAttribute(people);
-            }
+            Customer[] customers = service.getCustomers();
+            model.addAttribute("customerList", customers);
         }
         model.addAttribute(new Customer());
         return CUSTOMER_PAGE;
@@ -44,7 +42,7 @@ public class CustomerController {
         if (!result.hasErrors()) {
             Customer customerResponse = service.create(customer);
             logger.debug("Customer saved {}", customerResponse);
-            return "redirect:/"+CUSTOMER_PAGE;
+            return "redirect:/" + CUSTOMER_PAGE;
         }
         return CUSTOMER_PAGE;
     }

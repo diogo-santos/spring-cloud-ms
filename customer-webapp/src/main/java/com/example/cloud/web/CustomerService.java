@@ -1,4 +1,4 @@
-package com.example.cloud.web.client;
+package com.example.cloud.web;
 
 import com.example.cloud.web.domain.Customer;
 import org.slf4j.Logger;
@@ -9,13 +9,13 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 @Service
-public class CustomerServiceImpl implements CustomerService {
-    private Logger logger = LoggerFactory.getLogger(CustomerServiceImpl.class);
+public class CustomerService {
+    private Logger logger = LoggerFactory.getLogger(CustomerService.class);
     private static final Customer CUSTOMER_NOT_AVAILABLE = Customer.builder().firstName("Customer data not available").build();
 
     private final WebClient webClient;
 
-    public CustomerServiceImpl(Environment environment, WebClient.Builder webClientBuilder) {
+    public CustomerService(Environment environment, WebClient.Builder webClientBuilder) {
         String gatewayServer = environment.getRequiredProperty("gateway.server");
         this.webClient = webClientBuilder.baseUrl(gatewayServer).build();
     }

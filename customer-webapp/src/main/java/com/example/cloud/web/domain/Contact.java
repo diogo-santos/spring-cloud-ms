@@ -11,5 +11,5 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 public class Contact {
     @NotBlank
-    private String info;
+    private String description;
 }
